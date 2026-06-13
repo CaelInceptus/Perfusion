@@ -1,0 +1,16 @@
+name: Build Perfusion
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Build
+      run: msbuild Perfusion/Perfusion.vcxproj /p:Configuration=Release /p:Platform=x64
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Perfusion
+        path: Perfusion/x64/Release/Perfusion.exe
