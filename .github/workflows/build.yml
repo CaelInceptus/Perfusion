@@ -7,10 +7,10 @@ jobs:
     - uses: actions/checkout@v4
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v2
-    - name: Build
-      run: msbuild Perfusion/Perfusion.vcxproj /p:Configuration=Release /p:Platform=x64
+    - name: Build solution
+      run: msbuild Perfusion.sln /p:Configuration=Release /p:Platform=x64
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: Perfusion
-        path: Perfusion/x64/Release/Perfusion.exe
+        path: x64/Release/Perfusion.exe
